@@ -1,9 +1,9 @@
-#include "header.h"
+#include "../header.h"
 /*
 https://www.acmicpc.net/problem/1000
 */
 
-/*
+
 void ProblemSolved() {
 	int a,b;
 
@@ -11,4 +11,3 @@ void ProblemSolved() {
 	
 	cout << a + b;
 }
-*/

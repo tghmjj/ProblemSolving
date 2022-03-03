@@ -1,9 +1,9 @@
-#include "header.h"
+#include "../header.h"
 /*
 https://www.acmicpc.net/problem/2753
 */
 
-/*
+
 void ProblemSolved() {
 	int years;
 	cin >> years;
@@ -17,4 +17,3 @@ void ProblemSolved() {
 
 	return;
 }
-*/

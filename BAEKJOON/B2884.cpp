@@ -1,4 +1,4 @@
-#include "header.h"
+#include "../header.h"
 /*
 https://www.acmicpc.net/problem/2884
 */

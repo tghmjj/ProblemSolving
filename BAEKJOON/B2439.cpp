@@ -1,9 +1,9 @@
-#include "header.h"
+#include "../header.h"
 /*
 https://www.acmicpc.net/problem/
 */
 
-/*
+
 void ProblemSolved() {
 	int N = 0;
 	cin >> N;
@@ -21,4 +21,3 @@ void ProblemSolved() {
 
 	return;
 }
-*/
