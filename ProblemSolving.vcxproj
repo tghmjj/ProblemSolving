@@ -140,7 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="B1000.cpp" />
+    <ClCompile Include="B1001.cpp" />
+    <ClCompile Include="B10171.cpp" />
+    <ClCompile Include="B10869.cpp" />
+    <ClCompile Include="B2439.cpp" />
+    <ClCompile Include="B2475.cpp" />
+    <ClCompile Include="B2557.cpp" />
+    <ClCompile Include="B2753.cpp" />
+    <ClCompile Include="B2884.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Template.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h" />
