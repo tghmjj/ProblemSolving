@@ -1,0 +1,131 @@
+#include <iostream>
+using namespace std;
+int* self_num_arr;
+int arr_length;
+/*
+문제 1) 숫자 n을 입력받아서 수열 중 세 개의 중복가능 합으로 이루어진 답을 내놓아라
+합만 된다면 어떤합이던 상관없음 (예제. 9 + 1 + 1 = 11 , 7 + 3 + 1 = 11)
+
+수열 : 1 3 5 7 9 10 12 ...
+
+수열이 아닌수 = 본인 + 본인의 각 자리의 합이 되는 경우의 수
+
+1 = > 1 + 1 = 2 (2는 수열아님)
+2 => 2 + 2 = 4 (4는 수열아님)
+3 => 3 + 3 = 6 (6은 수열아님)
+...
+10 =>　1 + 0 + 10 = 11 (11은 수열아님)
+
+입력 : 11
+출력 : 9 + 1 + 1
+입력 : 8
+출력 : IMPOSSIBLE
+
+*/
+int get_selfnum(int num) {
+	int sum = num;
+	int temp = num;
+	while (num > 0) {
+		sum += num % 10;
+		num /= 10;
+	}
+	if (sum > 10000) 
+		return 0;
+	return sum;
+}
+void set_num_selfnum(bool* arr) {
+	for (int i = 1; i < 10001; ++i) {
+		arr[i] = true;
+	}
+	for (int i = 1; i < 10001; ++i) {
+		
+		int temp = get_selfnum(i);
+		if (temp != 0)
+		{
+			arr[temp] = false;
+		}
+	}
+	self_num_arr = new int[10001];
+	for (int i = 1; i < 10001; ++i) {
+		if (arr[i])
+		{
+			self_num_arr[arr_length] = i;
+			++arr_length;
+		}
+	}
+}
+int find_max_index(int num) {
+	for (int i = arr_length - 1; i >= 0; --i) {
+		if (num >= self_num_arr[i])
+			return i;
+	}
+	return 0;
+}
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	/**************/
+	int arr_len = 10001;
+	bool* num_arr = new bool[arr_len];
+	set_num_selfnum(num_arr);
+	char c_arr[10];
+
+	/*for (int i = 0; i < arr_length; i++) {
+		cout << self_num_arr[i] << " ";
+	}
+	return 0;*/
+	while (true) {
+		cin >> c_arr;
+		int num = atoi(c_arr);
+		bool isfound = false;
+		int max_index = find_max_index(num);
+		bool two_sum[10001];
+		char** is_two_sum= new char*[10001];
+		for (int i = 0; i < 10001; i++) {
+			is_two_sum[i] = new char[20];
+			two_sum[i] = false;
+		}
+		for (int i = 0; i < max_index; ++i) {
+			for (int j = 0; j < max_index; ++j) {
+				if (self_num_arr[i] + self_num_arr[j] > 10000)
+					continue;
+				two_sum[self_num_arr[i] + self_num_arr[j]] = true;
+				char buff[20];
+				sprintf_s(buff, "%d + %d", self_num_arr[i],self_num_arr[j]);
+				int index=0;
+				while (true) {
+					if (buff[index] == '\0') {
+						is_two_sum[self_num_arr[i] + self_num_arr[j]][index] = '\0';
+						break;
+					}
+
+					is_two_sum[self_num_arr[i] + self_num_arr[j]][index] = buff[index];
+					index++;
+				}
+			}
+		}
+		int index = max_index;
+		while (true) {
+			if (index < 0) {
+				cout << "IMPOSSIBLE\n";
+				break;
+			}
+			int target = num - self_num_arr[index];
+			if (target < 0) {
+				index--;
+				continue;
+			}
+			if (two_sum[target]) {
+				cout << is_two_sum[target] << " + " << self_num_arr[index]<<"\n";
+				break;
+			}
+			index--;
+		}
+	}
+
+
+	/**************/
+	return 0;
+}
+
